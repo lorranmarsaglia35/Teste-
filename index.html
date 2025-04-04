@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felício Veículos Estoque de Carros</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Felício Veículos Estoque de Carros</h1>
+        <nav>
+            <a href="https://www.facebook.com/suarevenda">Facebook</a>
+            <a href="https://www.instagram.com/suarevenda">Instagram</a>
+            <a href="https://www.twitter.com/suarevenda">Twitter</a>
+        </nav>
+    </header>
+    <main>
+        <section id="carros-disponiveis">
+            <h2>Carros Disponíveis</h2>
+            <div id="lista-disponiveis"></div>
+        </section>
+        <section id="carros-vendidos">
+            <h2>Carros Vendidos</h2>
+            <div id="lista-vendidos"></div>
+        </section>
+    </main>
+    <script>
+        const carros = [
+            { id: 1, modelo: 'Carro A', modeloDetalhado: 'Sedan 1.6', ano: 2021, status: 'disponível', contato: '555-1234', imagens: ['carroA1.jpg', 'carroA2.jpg', 'carroA3.jpg'], preco: 'R$ 50.000', opcoes: 'Troca, Compra, Financia' },
+            { id: 2, modelo: 'Carro B', modeloDetalhado: 'SUV 2.0', ano: 2020, status: 'vendido', contato: '555-5678', imagens: ['carroB1.jpg', 'carroB2.jpg'], preco: 'R$ 60.000', opcoes: 'Troca, Compra, Financia' },
+            { id: 3, modelo: 'Carro C', modeloDetalhado: 'Hatch 1.0', ano: 2022, status: 'disponível', contato: '555-8765', imagens: ['carroC1.jpg', 'carroC2.jpg', 'carroC3.jpg'], preco: 'R$ 70.000', opcoes: 'Troca, Compra, Financia' },
+        ];
+
+        function exibirCarros() {
+            const listaDisponiveis = document.getElementById('lista-disponiveis');
+            const listaVendidos = document.getElementById('lista-vendidos');
+
+            carros.forEach(carro => {
+                const divCarro = document.createElement('div');
+                divCarro.className = 'carro';
+                divCarro.innerHTML = `
+                    <h3>${carro.modelo} (${carro.ano})</h3>
+                    <div id="carrossel-${carro.id}" class="carrossel">
+                        <button class="prev" onclick="mudarImagem(${carro.id}, -1)">&#10094;</button>
+                        <div class="imagens">
+                            ${carro.imagens.map(imagem => `<img src="${imagem}" alt="${carro.modelo}">`).join('')}
+                        </div>
+                        <button class="next" onclick="mudarImagem(${carro.id}, 1)">&#10095;</button>
+                    </div>
+                    <p>Modelo Detalhado: ${carro.modeloDetalhado}</p>
+                    <p>Preço: ${carro.preco}</p>
+                    <p>Opções: ${carro.opcoes}</p>
+                    <p>Status: ${carro.status}</p>
+                    <button onclick="contato('${carro.contato}')">Comprar</button>
+                `;
+
+                if (carro.status === 'disponível') {
+                    listaDisponiveis.appendChild(divCarro);
+                } else {
+                    listaVendidos.appendChild(divCarro);
+                }
+            });
+        }
+
+        function contato(numero) {
+            const mensagem = `Olá, estou interessado no carro. Por favor, entre em contato pelo número ${numero}.`;
+            window.open(`https://api.whatsapp.com/send?phone=${numero}&text=${mensagem}`, '_blank');
+        }
+
+        function mudarImagem(carroId, direcao) {
+            const carrossel = document.querySelector(`#carrossel-${carroId} .imagens`);
+            const imagens = carrossel.children;
+            let indexAtual = Array.from(imagens).findIndex(imagem => imagem.style.display === 'block');
+
+            if (indexAtual === -1) {
+                indexAtual = 0;
+            }
+
+            imagens[indexAtual].style.display = 'none'; // Esconde a imagem atual
+            let novoIndex = (indexAtual + direcao + imagens.length) % imagens.length;
+            imagens[novoIndex].style.display = 'block'; // Mostra a nova imagem
+        }
+
+        function inicializarCarrossel() {
+            document.querySelectorAll('.carrossel .imagens').forEach(carrossel => {
+                Array.from(carrossel.children).forEach((imagem, index) => {
+                    imagem.style.display = index === 0 ? 'block' : 'none';
+                });
+            });
+        }
+
+        window.onload = () => {
+            exibirCarros();
+            inicializarCarrossel();
+        };
+    </script>
+<section id="admin-login">
+    <h2>Login do Administrador</h2>
+    <form id="form-login">
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" placeholder="Digite a senha" required>
+        <button type="button" onclick="verificarSenha()">Entrar</button>
+    </form>
+</section>
+
+<section id="admin-form">
+    <h2>Administração de Estoque</h2>
+    <form id="form-carro">
+        <input type="hidden" id="carro-id">
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" placeholder="Ex.: SUV 2.0" required>
+
+        <label for="ano">Ano:</label>
+        <input type="number" id="ano" placeholder="Ex.: 2020" required>
+
+        <label for="preco">Preço:</label>
+        <input type="text" id="preco" placeholder="Ex.: R$ 50.000" required>
+
+        <label for="status">Status:</label>
+        <select id="status">
+            <option value="disponível">Disponível</option>
+            <option value="vendido">Vendido</option>
+        </select>
+
+        <label for="imagens">URLs das Imagens (separadas por vírgula):</label>
+        <input type="text" id="imagens" placeholder="Ex.: img1.jpg,img2.jpg">
+
+        <button type="button" onclick="salvarCarro()">Salvar</button>
+    </form>
+</section>
+</body>
+</html>

@@ -1,0 +1,237 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    margin: 0 1em;
+    text-decoration: none;
+}
+
+main {
+    padding: 2em;
+}
+
+section {
+    margin-bottom: 2em;
+}
+
+h2 {
+    color: #333;
+}
+
+.carro {
+    background-color: #fff;
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+}
+
+.carro img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.carrossel {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carrossel .imagens {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carrossel img {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.carrossel .prev, .carrossel .next {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.carrossel .prev {
+    left: 0;
+}
+
+.carrossel .next {
+    right: 0;
+}
+
+/* Cores modernas */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8; /* Cinza suave */
+    color: #333;
+}
+
+header {
+    background-color: #0077b6; /* Azul vibrante */
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    border-bottom: 4px solid #023e8a; /* Realce */
+}
+
+nav a {
+    color: #fff;
+    margin: 0 1em;
+    text-decoration: none;
+    transition: color 0.3s; /* Efeito hover */
+}
+
+nav a:hover {
+    color: #caf0f8; /* Azul mais claro */
+}
+
+/* Efeitos hover e sombras */
+.carro {
+    background-color: #fff;
+    padding: 1em;
+    margin-bottom: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transição suave */
+}
+
+.carro:hover {
+    transform: translateY(-5px); /* Efeito de elevação */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        line-height: 1.6; /* Tipografia aprimorada */
+    }
+
+    main {
+        padding: 1em;
+    }
+
+    .carro {
+        margin-bottom: 1em;
+    }
+}
+
+.carro img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px; /* Bordas arredondadas nas imagens */
+}
+
+/* Botões modernos */
+button {
+    background-color: #0077b6;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s; /* Efeitos suaves */
+}
+
+button:hover {
+    background-color: #023e8a;
+    transform: scale(1.05); /* Efeito de destaque */
+}
+
+/* Títulos */
+h2, h3 {
+    line-height: 1.4;
+    color: #023e8a; /* Destaque nos títulos */
+}
+
+#admin-form {
+    background-color: #f8f9fa;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 2em auto;
+    max-width: 400px;
+}
+
+#admin-form h2 {
+    color: #0077b6;
+    margin-bottom: 1em;
+}
+
+#form-carro label {
+    display: block;
+    margin: 0.5em 0 0.2em;
+}
+
+#form-carro input, #form-carro select {
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#form-carro button {
+    width: 100%;
+    background-color: #0077b6;
+    color: #fff;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#form-carro button:hover {
+    background-color: #023e8a;
+}
+#admin-login {
+    background-color: #f8f9fa;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 2em auto;
+    max-width: 300px;
+    text-align: center;
+}
+
+#admin-form {
+    display: none; /* O formulário de administração fica escondido inicialmente */
+}
